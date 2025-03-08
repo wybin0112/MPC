@@ -28,7 +28,7 @@ steps = 100;
 N = 10;
 
 % 初始化
-x0 = [20; -20]
+x0 = [20; -20];
 xk = zeros(n, steps);
 uk = zeros(p, steps);
 xk(:, 1) = x0;
@@ -41,7 +41,7 @@ for k = 1:1:steps
     % 求解uk
     uk(:, k) = MPC_MulU_Prediction(xk(:, k), H, E, p);
     % 计算第k+1步的状态变量
-    xk(:, k+1) = A * xk(:, k) + B * uk(:, k);
+    xk(:, k+1) = A * xk(:, k) + B * uk(:, k) + rand(n, 1); % 添加扰动
 end
 
 %% 绘图
